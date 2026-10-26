@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PolicyLens by Fine Print Co. – Understand your car insurance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f7;--surface:#fff;--ink:#14233b;--muted:#51617a;--line:#cfd9e4;--hl:#ffd84d;--hl-ink:#14233b;--accent:#2f5bea;--accent-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1826;--surface:#17243a;--ink:#e9eef6;--muted:#9fb0c7;--line:#2a3a54;--accent:#7b9bff;--accent-ink:#0f1826}}
+:root[data-theme="dark"]{--bg:#0f1826;--surface:#17243a;--ink:#e9eef6;--muted:#9fb0c7;--line:#2a3a54;--accent:#7b9bff;--accent-ink:#0f1826}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Bricolage Grotesque",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.01em}
+.logo span{background:var(--hl);color:var(--hl-ink);padding:0 6px;border-radius:3px}
+nav a{color:var(--ink);font-weight:500;text-decoration:none}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-.03em;margin:30px 0 18px;font-weight:800}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+.lead{color:var(--muted);font-size:19px;max-width:46ch;margin:0 0 26px}
+.hero{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center;padding-bottom:70px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:14px 22px;font:700 17px "Bricolage Grotesque",sans-serif;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.demo-bar{padding:10px 16px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.doc{font-family:"Source Serif 4",Georgia,serif;font-size:15.5px;line-height:1.65;padding:16px 20px;max-height:250px;overflow:auto}
+.doc p{margin:0 0 10px}
+.doc b{font-family:"Bricolage Grotesque",sans-serif}
+.doc p.on{background:var(--hl);color:var(--hl-ink);border-radius:3px;box-shadow:0 0 0 4px var(--hl)}
+.qa{border-top:1px solid var(--line);padding:16px 20px}
+.qs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.qs button{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:500 14.5px "Bricolage Grotesque",sans-serif;cursor:pointer}
+.qs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ans{margin:0;min-height:5.2em}
+.ans small{display:block;color:var(--muted);margin-top:6px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:28px}
+.steps div{border-left:4px solid var(--hl);padding-left:16px}
+.steps h3{margin:0 0 4px;font-size:21px}
+.steps p{margin:0;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:28px;max-width:820px}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:26px}
+.plan.best{border-color:var(--accent)}
+.plan h3{margin:0;font-size:22px}
+.price{font-size:54px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:8px 0}
+.price small{font-size:16px;font-weight:500;color:var(--muted);letter-spacing:0}
+.plan ul{padding-left:20px;margin:14px 0 22px;color:var(--muted)}
+.plan .btn{width:100%;text-align:center}
+.note{color:var(--muted);font-size:15px;margin-top:18px}
+footer{padding:36px 0 50px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+dialog{border:0;border-radius:14px;padding:28px;max-width:420px;width:calc(100% - 32px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(10,18,32,.6)}
+dialog input{width:100%;padding:12px;border:2px solid var(--line);border-radius:8px;font:17px "Bricolage Grotesque",sans-serif;margin:12px 0 16px;background:var(--bg);color:var(--ink)}
+dialog h3{margin:0 0 4px;font-size:24px}
+@media(max-width:820px){.hero,.steps,.plans{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.doc p{transition:background .25s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo"><span>Policy</span>Lens</div><a href="#pricing">Pricing</a></nav>
+
+<header class="hero">
+<div>
+<h1>Know what your car insurance actually covers.</h1>
+<p class="lead">Upload any auto policy, ask in plain language, and see the exact clause behind every answer. Built by students who are about to buy their first policy too.</p>
+<a class="btn" href="#pricing">See pricing</a>
+</div>
+<div class="demo" aria-label="Interactive demo">
+<div class="demo-bar">Sample policy: Maple State Auto, Personal Auto Policy</div>
+<div class="doc" id="doc">
+<p data-c="21"><b>§2.1 Permissive users.</b> We cover any person driving your car with your permission, subject to the limits shown on your declarations page.</p>
+<p data-c="42"><b>§4.2 Collision deductible.</b> For collision loss you pay the first $500. We pay the remaining covered amount up to the actual cash value of the car.</p>
+<p data-c="53"><b>§5.3 Exclusions.</b> We do not cover loss while your car is used to carry people or property for a fee, including ride-share and delivery, unless endorsed.</p>
+</div>
+<div class="qa">
+<div class="qs" role="group" aria-label="Try a question">
+<button aria-pressed="true" data-c="21">Can a friend drive my car?</button>
+<button aria-pressed="false" data-c="42">What do I pay after a crash?</button>
+<button aria-pressed="false" data-c="53">Does it cover Uber driving?</button>
+</div>
+<p class="ans" id="ans" aria-live="polite"></p>
+</div>
+</div>
+</header>
+
+<section>
+<h2>Three steps, no insurance degree</h2>
+<div class="steps">
+<div><h3>1. Upload</h3><p>Drop in the policy PDF you are considering.</p></div>
+<div><h3>2. Ask</h3><p>Type questions the way you would text a friend, in English, Spanish, Chinese and more.</p></div>
+<div><h3>3. Verify</h3><p>Every answer links to the clause it came from, so you never have to just trust us.</p></div>
+</div>
+</section>
+
+<section id="pricing">
+<h2>Simple pricing. Pay once, no subscription.</h2>
+<p class="lead">Cheaper than one month of the coverage you are trying to understand.</p>
+<div class="plans">
+<div class="plan">
+<h3>Single Policy</h3>
+<div class="price">$5 <small>one time</small></div>
+<ul><li>1 policy document</li><li>Unlimited questions</li><li>Clause citations on every answer</li><li>Answers in 12 languages</li></ul>
+<button class="btn ghost" data-plan="Single Policy" data-price="$5">Buy for $5</button>
+</div>
+<div class="plan best">
+<h3>Shopper Pack</h3>
+<div class="price">$12 <small>one time</small></div>
+<ul><li>Up to 5 policies</li><li>Side-by-side comparison of deductibles, exclusions and price</li><li>Everything in Single Policy</li><li>30 days of access</li></ul>
+<button class="btn" data-plan="Shopper Pack" data-price="$12">Buy for $12</button>
+</div>
+</div>
+<p class="note">We are in pre-launch. Buy now to lock in this price and get access the day the MVP opens.</p>
+</section>
+
+<footer>© 2026 Fine Print Co. PolicyLens explains your policy; it is not legal or insurance advice.</footer>
+</div>
+
+<dialog id="dlg">
+<h3 id="dt">Reserve your copy</h3>
+<p id="dp" style="color:var(--muted);margin:0">Enter your email and we will send your payment link.</p>
+<input id="em" type="email" placeholder="you@school.edu" aria-label="Email address">
+<button class="btn" id="go">Continue</button>
+<button class="btn ghost" id="x" style="margin-left:8px">Cancel</button>
+</dialog>
+
+<script>
+var answers={
+"21":["Yes. A friend can drive your car if you gave them permission, up to the limits on your declarations page.","§2.1 Permissive users"],
+"42":["You pay the first $500 of a collision claim. The insurer covers the rest, up to what the car is worth.","§4.2 Collision deductible"],
+"53":["No. Driving for Uber, Lyft or delivery is excluded unless you add a special endorsement.","§5.3 Exclusions"]};
+var btns=document.querySelectorAll(".qs button"),ps=document.querySelectorAll("#doc p"),ans=document.getElementById("ans");
+function show(c){
+btns.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.c===c)});
+ps.forEach(function(p){p.classList.toggle("on",p.dataset.c===c);if(p.dataset.c===c){p.scrollIntoView({block:"nearest"})}});
+ans.innerHTML=answers[c][0]+"<small>Source: "+answers[c][1]+"</small>";}
+btns.forEach(function(b){b.addEventListener("click",function(){show(b.dataset.c)})});
+show("21");
+var dlg=document.getElementById("dlg"),pick="";
+document.querySelectorAll("[data-plan]").forEach(function(b){b.addEventListener("click",function(){
+pick=b.dataset.plan+" ("+b.dataset.price+")";
+document.getElementById("dt").textContent="Reserve "+b.dataset.plan+" for "+b.dataset.price;
+document.getElementById("dp").textContent="Enter your email and we will send your payment link.";
+document.getElementById("em").style.display="";document.getElementById("go").style.display="";
+dlg.showModal();})});
+document.getElementById("x").addEventListener("click",function(){dlg.close()});
+document.getElementById("go").addEventListener("click",function(){
+var e=document.getElementById("em");
+if(!e.value||e.value.indexOf("@")<1){e.focus();return}
+document.getElementById("dt").textContent="You’re on the list";
+document.getElementById("dp").textContent="We’ll email "+e.value+" with your payment link for "+pick+".";
+e.style.display="none";this.style.display="none";});
+</script>
+</body>
+</html>
